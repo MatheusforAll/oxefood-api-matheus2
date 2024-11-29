@@ -1,7 +1,5 @@
 package br.com.ifpe.oxefood.modelo.venda;
 
-import java.time.LocalDate;
-
 import org.hibernate.annotations.SQLRestriction;
 
 import br.com.ifpe.oxefood.util.entity.EntidadeAuditavel;
@@ -14,9 +12,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 @Entity
-@Table(name = "venda")
+@Table(name = "Venda")
 @SQLRestriction("habilitado = true")
 @Builder
 @Getter
@@ -25,28 +22,36 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Venda extends EntidadeAuditavel {
 
-@Column
-private String cliente;
+    @Column
+   private String cliente;
 
-@Column
-private String produto;
+   @Column
+   private String produto;
 
-@Column
-private String statusVenda;
+   @Column
+   private String statusVenda;
+   
+   @Column
+   private String dataVenda;
 
-@Column
-private LocalDate dataVenda;
+   @Column
+   private Double valorTotal;
 
-@Column
-private Double valorTotal;
+   @Column
+   private String observacao;
 
-@Column
-private String  observacao;
-
-@Column
-private  Boolean  retiradaEmLoja;
+   @Column
+   private Boolean retiradaEmLoja;
 
 
 
+
+
+
+
+
+
+
+ 
     
 }
