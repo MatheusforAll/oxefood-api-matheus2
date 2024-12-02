@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.ifpe.oxefood.util.entity.ProdutoException;
 import jakarta.transaction.Transactional;
 
 @Service
@@ -14,7 +15,11 @@ public class ProdutoService {
    private ProdutoRepository repository;
 
     @Transactional
-   public Produto save(Produto produto) {
+   public Produto save(Produto produto)   {
+
+    if (produto.getValorUnitario() < 10) {
+	    throw new ProdutoException(ProdutoException.MSG_VALOR_MINIMO_PRODUTO);
+	}
 
     produto.setHabilitado(Boolean.TRUE);
        return repository.save(produto);
@@ -40,7 +45,8 @@ public class ProdutoService {
     produto.setValorUnitario(produtoAlterado.getValorUnitario());
     produto.setTempoEntregaMinimo(produtoAlterado.getTempoEntregaMinimo());
     produto.setTempoEntregaMaximo(produtoAlterado.getTempoEntregaMaximo());
-	    
+	   
+   
       repository.save(produto);
   }
 
